@@ -1,5 +1,9 @@
 package edu.miu;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.miu.dto.Product;
+import edu.miu.utils.CustomObjectMapper;
+import edu.miu.utils.HbaseTable;
 import kafka.serializer.StringDecoder;
 import org.apache.commons.collections.IteratorUtils;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -24,6 +28,7 @@ import java.util.*;
 public class Consumer {
 
     public static void main(String[] args) throws Exception {
+        ObjectMapper objectMapper = CustomObjectMapper.getMapper();
         SparkConf conf = new SparkConf().setAppName("first-topic-listener");
         JavaSparkContext jsc = new JavaSparkContext(conf);
         JavaStreamingContext ssc = new JavaStreamingContext(jsc, Durations.seconds(5));
@@ -35,42 +40,22 @@ public class Consumer {
         kafkaParams.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "StringDeserializer");
         kafkaParams.put(ConsumerConfig.GROUP_ID_CONFIG, "group1");
 
-        JavaPairInputDStream<String, String> stream = KafkaUtils.createDirectStream(ssc, String.class, String.class,
-                StringDecoder.class, StringDecoder.class, kafkaParams,
-                topics);
+        HbaseTable.init();
+        JavaPairInputDStream<String, String> stream = KafkaUtils.createDirectStream(ssc, String.class, String.class, StringDecoder.class, StringDecoder.class, kafkaParams, topics);
 
         stream.foreachRDD(rdd -> {
-            rdd.foreachPartition(partition -> {
-                // Recreate SparkContext within the closure
-                SparkContext sc = new SparkContext(jsc.getConf());
-                SQLContext sqlContext = new SQLContext(sc);
+            JavaRDD<Product> jrdd = rdd
+                    .filter(f -> f._2 != null && !f._2.isEmpty())
+                    .map(f -> {
+                        System.out.println("------------" + f._2);
+                        return objectMapper.readValue(f._2(), Product.class);
+                    });
 
-                // Define schema for DataFrame
-                StructType schema = DataTypes.createStructType(new StructField[]{
-                        DataTypes.createStructField("invoiceId", DataTypes.StringType, true),
-                        DataTypes.createStructField("productId", DataTypes.StringType, true),
-                        DataTypes.createStructField("productName", DataTypes.StringType, true),
-                        DataTypes.createStructField("quantity", DataTypes.IntegerType, true),
-                        DataTypes.createStructField("date", DataTypes.StringType, true),
-                        DataTypes.createStructField("price", DataTypes.DoubleType, true),
-                        DataTypes.createStructField("customerId", DataTypes.StringType, true),
-                        DataTypes.createStructField("country", DataTypes.StringType, true)
-                });
-
-
-                List<Tuple2<String, String>> partitionList = IteratorUtils.toList(partition);
-                JavaRDD<Tuple2<String, String>> partitionRDD = jsc.parallelize(partitionList);
-
-                DataFrame df = sqlContext.createDataFrame(partitionRDD.map(tuple -> RowFactory.create(tuple._1(), tuple._2())), schema);
-
-                // Register DataFrame as a temporary table
-                df.registerTempTable("temp_table");
-
-                // Insert DataFrame into Hive table
-                sqlContext.sql("INSERT INTO TABLE retail_data SELECT * FROM temp_table");
-
-                sc.stop(); // Stop the SparkContext when finished
+            jrdd.foreach(t -> {
+                System.out.println("listener: " + t);
+                HbaseTable.populateData(t);
             });
+            return null;
         });
 
         ssc.start();
