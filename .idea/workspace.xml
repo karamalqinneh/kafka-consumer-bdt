@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d3ba61b-5601-400d-9dd6-73395144d767" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/commands/hbase_table_create.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commands/hive/dump.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commands/hive/table.hql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commands/spark_submit.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/miu/dto/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/miu/utils/CustomObjectMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/miu/utils/HbaseTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/miu/SparkSql.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/miu/Consumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/miu/Consumer.java" afterDir="false" />
     </list>
@@ -33,9 +25,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2bqXKC5EYJuH0SBsB6AqtuAxC7L" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -45,8 +37,10 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Consumer.executor": "Run",
+    "Application.SparkSql.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "Maven.consumer [clean].executor": "Run",
+    "Maven.consumer [compile].executor": "Run",
     "Maven.consumer [install].executor": "Run",
     "Maven.consumer [org.apache.maven.plugins:maven-assembly-plugin:3.4.2:single].executor": "Run",
     "Maven.consumer [package].executor": "Run",
@@ -64,7 +58,12 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/edu/miu" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.SparkSql">
     <configuration name="Consumer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.miu.Consumer" />
       <module name="consumer" />
@@ -78,8 +77,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SparkSql" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.miu.SparkSql" />
+      <module name="consumer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.miu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SparkSql" />
         <item itemvalue="Application.Consumer" />
       </list>
     </recent_temporary>
@@ -93,7 +106,9 @@
       <option name="presentableId" value="Default" />
       <updated>1706929496643</updated>
       <workItem from="1706929497715" duration="7398000" />
-      <workItem from="1706943517878" duration="5058000" />
+      <workItem from="1706943517878" duration="10397000" />
+      <workItem from="1707021132929" duration="379000" />
+      <workItem from="1707081624376" duration="4383000" />
     </task>
     <servers />
   </component>
