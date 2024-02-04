@@ -56,16 +56,6 @@ A professional presentation summarizing all aspects of the project, including da
 - [X] Task 1: Prepare presentation slides.
 - [X] Task 2: Present the project, covering key findings and insights.
 
-## Additional Notes
-
-- Ensure clear and concise documentation within each project folder.
-- Consider adding unit tests for data cleaning and analysis processes.
-- Use version control effectively, creating branches for different features or improvements.
-- Keep the README files updated as the project evolves.
-- Be responsive to issues and pull requests from the community.
-- Ensure that your code adheres to best practices and follows a clean and consistent coding style.
-
-
 ## Installation
 
 
