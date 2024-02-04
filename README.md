@@ -187,3 +187,22 @@ Ensure that all installations are successful before proceeding with the project.
 3. **Follow specific instructions in each project part's README for additional setup steps.**
 
 Now, you have successfully installed the required tools and libraries for the Retail Data Analysis project. Refer to individual part README files for detailed setup instructions for each section of the project.
+
+
+
+## Contributing
+
+Contributions are always welcome!
+
+See `contributing.md` for ways to get started.
+
+Please adhere to this project's `code of conduct`.
+
+
+## Authors
+
+- [Karam ](https://www.github.com/octokatherine)
+- [Majed ](https://www.github.com/octokatherine)
+- [Abduallah ](https://www.github.com/octokatherine)
+- [Mahmoud ](https://www.github.com/octokatherine)
+
