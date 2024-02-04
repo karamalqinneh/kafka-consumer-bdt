@@ -176,7 +176,7 @@ Ensure that all installations are successful before proceeding with the project.
 
 1. **Clone the Retail Data Analysis repository:**
    ```bash
-   git clone [https://github.com/yourusername/retail-data-analysis.git](https://github.com/karamalqinneh/kafka-consumer-bdt)
+   git clone https://github.com/karamalqinneh/kafka-consumer-bdt.git
    ```
 
 2. **Navigate to the project directory:**
